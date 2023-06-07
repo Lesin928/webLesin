@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!-- meta 태그 -->
+<title>Lesin 자기소개 페이지</title> <!--타이틀-->
+<style>
+
+body{
+    overflow: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black; 
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+canvas {
+    position: absolute;
+    pointer-events: none;
+}
+
+#container {
+    width:100%;
+    height:100vh; 
+    overflow:auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+#timer {
+    background-color: white;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+}
+
+#countdown {
+    background-color: white;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    ont-size: 24px;
+}
+
+section {
+	background-color: #343434;
+    width:100%; 
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: center;
+}
+/*
+.list:nth-child(1){ //메인
+    background-color: #2B2118;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+} */
+section:nth-child(2){
+    background-color: #9BABB8;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(3){
+    background-color: #EEE3CB;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(4){
+    background-color: #D7C0AE;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(5){
+    background-color: #967E76;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(6){
+    background-color: #9BABB8;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(7){
+    background-color: #EEE3CB;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(8){
+    background-color: #D7C0AE;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+section:nth-child(9){
+    background-color: #967E76;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+.myText{
+	padding: 10px 300px 10px 300px;
+	text-align: center;
+}
+
+.Index{	
+	padding: 0px 0px 0px 0px;
+	transition: left .3s;
+	width: 250px;
+	box-shadow: 1px 1px 0px 0px;
+	position: fixed;
+    overflow: hidden;    
+    top: 0px;
+	bottom: 0px;
+    left: -300px;
+    padding-top: 30px;
+	z-index: 0;
+	color: #343434;	
+	background-color: gray;
+}
+.Index:hover{ 		
+	left: 0px;
+	box-shadow: 1px 1px 4px 2px gray;	
+}
+.IndexList{
+	padding: 10px 10px 10px 10px;
+}
+.IndexButton{
+	text-align: center;
+	background-color: #343434;
+	color: white;
+	border: 1px solid white;
+	border-radius: 5px;
+	position: fixed;
+    width: 55px;
+	height: 30px;
+    top: 0px;
+    left: 0px;    
+	margin: 10px 0px 0px 20px;
+	padding: 10px 0px 0px 0px;
+	z-index: 1;
+}
+#header {  	  	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#header .profile {
+	margin-right: 20px;
+}
+
+#header .content {
+	margin-left: 20px;
+}
+
+#header .content h1 {
+	color: white;
+}
+#header .content h1, 
+#header .content p {
+	color: white;    
+}
+#header .profile img {
+	border-radius: 100%;
+	border: 4px solid white;
+}
+</style>
+<script>
+
+
+</script>	
+</head>
+<body onload="startTimer()">
+<div id="container"> 
+<section>
+<header id="header">
+  <div class="profile">
+
+  <button onclick="deleteImage()">이미지 삭제</button>
+   <button onclick="drawCircle()">원 그리기</button>
+  	<img  id="myImage" src="./imgs/profile.png" width="500px;" height="500px" alt="" /> <!--이미지 삽입, 인라인 태그-->
+  </div>
+  <div class="content">
+    <h1 title="Lee Seung Min = a.k.a Lesin"><a name="a1">이승민</a></h1><!--문단 제목, 툴팁, 앵커 만들기--> 
+    <hr> <!--수평선 긋기-->
+    <br> <!--줄넘김 -->
+    <p>세상에 <ins>이로운 영향</ins>을 주는 <span style="color: aqua;">게임 개발자</span>를 <b>목표</b>로 하고 있습니다.&nbsp;&nbsp;&nbsp;</p> <!--띄어쓰기, 단락 나누기, 텍스트 꾸미기, 인라인태그 -->
+  </div>
+</header>
+<nav>
+	<div class="Index">
+		<div class="IndexButton" style="font-weight: bold;">목차</div>
+		<br>
+		<ol type="0."> <!--정의된 리스트 만들기-->
+			<li class="IndexList"><a href="#a1">자기소개</a></li> <!-- 앵커로 이동하는 하이퍼링크 만들기 -->
+			<li class="IndexList"><a href="#a2">주제 선정 동기</a></li>
+			<li class="IndexList"><a href="#a3">성장 과정</a></li>
+			<li class="IndexList"><a href="#a4">사회 이슈</a> </li>
+			<li class="IndexList"><a href="#a5">프로젝트 중 어려웠던 경험</a></li>	
+			<li class="IndexList"><a href="#a6">나의 역량</a></li>	
+			<li class="IndexList"><a href="#a7">관심 기술</a></li>	
+			<li class="IndexList"><a href="#a8">관련 기업</a></li>	
+			<li class="IndexList"><a href="#a9">Future Plan</a></li>	
+		</ol>	
+		<br>
+		<br>		
+	</div>
+</nav>
+</section>
+	<section>
+		<header>
+			<h2><a name="a2">주제 선정 동기</a></h2><hr>
+		</header>				
+		<br>
+		<div class="myText">
+			Unity는 매우 강력한 게임 엔진입니다. 저사양과, 소규모 게임 개발에 적합합니다. 또한 에셋 스토어라는 유저간 장터가 매우 활성화되어 있어, 상당한 이점을 제공합니다. 게임 개발에 크게 도움이 되는 게임 엔진이기 때문에 주제로 선정하게 되었습니다. 아래는 자체 제작 엔진과 유니티의 차이점을 나타낸 표 입니다.
+			<br> <br>
+
+			  <table>
+    <tr>
+      <th>구분</th>
+      <th>자체 제작 엔진</th>
+      <th>유니티</th>
+    </tr>
+    <tr>
+      <td>개발 회사</td>
+      <td>별도의 개발 회사에서 직접 개발</td>
+      <td>Unity Technologies</td>
+    </tr>
+    <tr>
+      <td>사용 언어</td>
+      <td>주로 C++, 자체 스크립팅 언어</td>
+      <td>C#, UnityScript (JavaScript 유사 언어)</td>
+    </tr>
+    <tr>
+      <td>저작권</td>
+      <td>완전한 저작권 보유</td>
+      <td>유니티의 사용 조건에 따라 저작권 부여</td>
+    </tr>
+    <tr>
+      <td>기능</td>
+      <td>원하는 기능을 자체로 개발</td>
+      <td>다양한 기능이 내장되어 있음 (물리 시뮬레이션, 애니메이션, AI 등)</td>
+    </tr>
+    <tr>
+      <td>리소스</td>
+      <td>직접 리소스를 관리해야 함</td>
+      <td>에셋 스토어를 통해 다양한 리소스를 구매 및 이용 가능</td>
+    </tr>
+    <tr>
+      <td>설계 및 개발 시간</td>
+      <td>전체적인 구조와 기능을 직접 설계 및 개발</td>
+      <td>빠른 개발을 위해 대부분의 기능이 구현되어 있음</td>
+    </tr>
+  </table>
+		</div>	
+		<br>
+		<div style="width:390px; height:152px;">
+		<iframe src="iframe.html" style="width: 100%; height: 100%;"></iframe>
+		</div>
+	</section>
+	<section>
+		<header>
+			<h2><a name="a3">성장 과정</a></h2><hr>			
+		</header>		
+		<div class="myText">
+			어릴적 제게 가장 큰 영향을 준 사건은, 그저 고등학교 배정이었습니다. 어릴적부터 글쓰기와 발표, 게임을 좋아했던 나는 기획자의 꿈을 꾸고 있었습니다. 내가 다닌 고등학교는, 1학년때 과학 중점반이 존재하는 학교였는데, 단순히 집에서 가깝다는 이유로 넣었던 0지망 과학중점반에 배정되는 순간, 진로선택에 큰 장애물을 만나게 되었습니다. 문과로 전향이 불가능한 상태에서, 그 때 만난것은 당시 우리 학교의 과학부장이셨던 이형대 선생님을 만났습니다. 선생님께서는 내 상황을 이해하시고 [게임 프로그래머로 산다는 건] 이라는 한가지 책을 소개시켜 주셨는데, 그 책에선 개발 역량을 가진 기획자인 테크니컬 디렉터에 대한 이야기를 소개하고 있었습니다. 게임을 만드는 것에 흥미를 가졌던 저는 그 이후로 게임 개발자의 꿈을 키워가게 되었습니다.
+		</div>
+	</section>
+	<section>
+		<header>
+			<h2><a name="a4">사회 이슈</a></h2><hr>
+		</header>
+		<div class="myText">
+			최근 사회 이슈중 가장 중요하다가 할 수 있는 것은 단연코 ChatGpt에 대한 것이라고 생각합니다. 그중에서도 이를 게임에 적용한 엔비디아(NVIDIA)사의 카이로스(Kairos)에 대한것을 서술하고자 합니다. 이 기술은, AI챗봇 기술을 활용해 NPC 캐릭터와 플레이어가 자유롭게 대화를 할 수 있는 기술로, 플레이어가 말을 걸면 NPC 캐릭터는 자신의 배경상황에 맞게 대화와 몸짓, 표정, 음성까지 생성하여 플레이어에게 출력하는 기술입니다. 아래 영상에선 플레이어가 헤드셋에 "진아, 잘 지내니?"라고 물으니 "안타깝게도 그다지 좋지는 않아"라고 진이 대답하고, 이유를 물으면, 진은 "가게 주변에서 범죄가 일어날까 걱정돼. 최근 우리 라면 가게가 총격을 받았어"라고 답하는 것을 볼 수 있습니다. 이 기술은 게임이라는 매체를 기반으로 신선한 유저 경험을 선사할 수 있다는 점에서 획기적인 기술이지만, 플레이어와 AI가 부적절한 대화를 할 수 있다는 한계가 있습니다. 또한 최근에 대두된 AI의 환상(AI가 거짓을 사실로 믿고 잘못된 정보를 말하는 행위)이슈로 인해 유저의 재미를 반감 시킬 수도 있습니다. 따라서 이러한 기술에 발전에 맞춰서, AI와 플레이어의 부적절한 대화를 막는 기술적, 제도적 장치가 필요하며, AI가 잘못된 정보를 말해도 이를 한 캐릭터의 인간성, 내지는 게임성으로 승화시킬 수 있도록 게임 기획 분야와 융합된 노력이 필요 할 것입니다.
+		</div>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/5R8xZb6J3r0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	</section>
+	<section>
+		<header>
+			<h2><a name="a5">프로젝트 중 어려웠던 경험</a></h2><hr>
+		</header>
+		<div class="myText">
+			과거 19년도에 2D 도트 게임 제작 프로젝트를 진행한 바 있습니다.. 해당 프로젝트에 레벨디자이너로서 참여를 했는데, 유니티 엔진에서 직접 타일 맵 요소들을 배치하며 레벨디자인을 진행하였다. git을 이용한 협업을 진행하였고, 그리드에 타일맵을 직접 배치하여 merge하는 방식으로 프로젝트를 진행하고 있었습니다. 어느날부터, 다른 개발자가 프로젝트를 실행할 때 마다 프로젝트가 멈추거나 강제종료되는 현상이 발생하기 시작했습니다. 해당 부분으로 인해 상당기간 프로젝트가 정체상황에 빠졌고, 무엇보다 프로젝트가 바로 종료되거나 멈췄기 때문에, 주니어 개발자 입장에서 원인 규명이 매우 힘들었습니다. 그러던 와중 강제종료의 원인이 메모리 누수이며 이는 프로젝트를 실행하는 순간 바로 발생한다는 점을 알아냈고, 엔진 자체의 이슈임을 파악해 결국 메모리 누수가 일어나지 않는 이전 버전으로 pull하여 프로젝트를 다시 진행하였습니다. 추후 알게된 바로는 이 이슈는
+			<details> 
+				<summary>유니티 2D 타일맵의 룰 타일에 관련된 이슈</summary>
+				<p><a href="https://github.com/Unity-Technologies/2d-extras/blob/master/Runtime/Tiles/RuleTile/RuleTile.cs">해당 이슈는 19년도 11월에 대응되어 수정된 이슈입니다. </a></p>
+			</details>
+			로, 레벨디자인을 진행하며 배치하고 지우던 타일맵들이 영향을 준 것으로 판명되었습니다. 
+		</div>	
+	</section>
+	<section>
+		<header>
+			<h2><a name="a6">나의 역량</a></h2><hr>
+		</header>
+		<div class="myText">
+			저의 역량은 단연코 열정과 관심이라고 볼 수 있습니다. 공주대학교에 입학한 이후로, 게임 개발 동아리 Striking Arts에 가입한 저는 1학년 때부터 게임 개발 프로젝트를 진행하며 역량을 키웠습니다. 게임 기획자로 팀을 이끌며 창업 경진대회에 참가하였고, 장려상을 수상하였습니다. 프로젝트를 진행하며 키운 기획 역량을 활용하여, 부팀장이자 메인 기획자로 평소 즐겨보던 유튜버분의 팬게임을 제작하여 공모전에서 2위를 수상하기도 하였습니다. 해당 게임은 유명한 인디게임에서 모티브를 얻은 팬게임으로, 해당 유튜버의 방송 문화를 적절하게 배합해 팬들에게 좋은 평가를 받았습니다.
+			<br>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/8qVnqpZQSJg?start=7500" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<br>
+			또한 올해는 동아리에서 신입생들에게 게임 기획을 가르치고 있습니다. 저는 다양한 경험을 통해 게임 개발에 대한 역량을 키우고 있으며, 현재는 유니티 엔진을 이용한 게임 프로그래밍에 도전하고 있습니다. 
+		</div>	
+	</section>
+	<section>
+		<header>
+			<h2><a name="a7">관심 기술 소개</a></h2><hr>
+		</header>
+		<div class="myText">
+			전술했듯이, 제가 관심을 가지고 있는 기술은 Unity 게임 엔진입니다. 그 중에서도 최근 관심을 가지고 있는 기술은 닐로툰이라는 쉐이더 기술입니다. Unity는 다양한 렌더 파이프라인을 사용하고 있으며, 개발자는 그중에서 필요로 하는 게임의 사양에 맞게 그래픽 렌더 파이프라인을 선택 할 수 있습니다. 가장 대표적으로 빌트인, 유니버셜 렌더 파이프라인(URP), 고해상도 렌더 파이프라인(HDRP) 3가지를 사용하는데, 닐로툰 쉐이더는 URP를 사용하는 쉐이더입니다. 닐로툰 쉐이더는 단적으로 말해, 3D 모델링으로 만화풍 캐릭터를 표현하는데 현재 가장 강력한 쉐이더입니다. 빌트인을 사용하는 릴툰 쉐이더에 비해 2D 일러스트 풍을 표현하는데 있어서 훨씬 높은 퀄리티로 표현 할 수 있습니다. 현재 트렌드라고 할 수 있는 게임인 호요버스의 원신, 그리고 젤다의 전설에서 활용하는 쉐이더입니다.
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/2R6gtTWmihE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		</div>	
+	</section>
+	<section>
+		<header>
+			<h2><a name="a8">관심 기업 소개</a></h2><hr>
+		</header>
+		<div class="myText">
+			제가 가장 관심을 가지고 있는 기업은 넥슨게임즈입니다. 넥슨 게임즈는 한국을 기반으로 한 글로벌 온라인 게임 회사입니다. 1994년에 설립되어 현재는 전 세계적으로 다양한 게임을 개발하고 서비스하고 있습니다. 넥슨은 초기에는 온라인 서비스 제공자로 시작했지만, 이후 자체 개발한 게임을 출시하여 큰 성공을 거두었습니다. 넥슨 게임즈는 다양한 장르의 게임을 개발하고 있으며, 주로 온라인 멀티플레이어 게임을 중심으로 서비스하고 있습니다. 대표적인 게임으로는 "블루아카이브", "던전앤파이터", "서든어택" 등이 있습니다. 이 외에도 넥슨은 다양한 플랫폼에서 게임을 제공하고 있으며, 모바일 게임, 컴퓨터 게임, 콘솔 게임 등 다양한 플랫폼을 아우르고 있습니다. 넥슨은 게임을 통해 유저들에게 새로운 경험과 재미를 제공하고 있으며, 만화풍 캐릭터를 이용한 블루 아카이브라는 게임을 서비스 하고 있습니다. 해당 게임은 유니티 엔진으로 개발 된 게임입니다.
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/IEyGBzjl7RE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		</div>	
+	</section>
+
+	<section>
+		<header>
+			<h2><a name="a9">Puture Plan</a></h2><hr>
+		</header>
+		<div class="myText">
+			현재 저는 게임 클라이언트 프로그래머를 준비하고 있으며, 저의 최종 목표는 테크니컬 디렉터가 되는 것입니다. 저의 비전은 최종적으로 실무 게임 개발에 대한 파이프라인을 이해하고, 취직을 통해 개발자로서의 역량을 쌓은 뒤, 소비자에게 통하는 게임을 제작하는데 이바지하는 것입니다.
+			현재의 저는 컴퓨터 그래픽스와 각종 알고리즘과 같은 게임개발에 필요한 기초 지식을 쌓아나가고 있습니다. 앞으로 저는 이러한 역량을 활용하여 게임 개발 프로젝트에 참여하여 클라이언트 프로그래머로서의 역량을 키우고자 합니다. 해당 프로젝트를 창업동아리 혹은 외부 공모전에 출품하여 포트폴리오를 쌓아 게임 클라이언트 프로그래머로 취업을 준비 할 것입니다.
+		</div>	
+	</section>
+	<footer>
+	<section>
+		  <form style="color: white;">
+    <fieldset>
+      <legend>홈페이지 개선사항 설문조사</legend>
+      <label for="nameField">이름:</label>
+      <input type="text" id="nameField" required><br>
+
+      <label for="emailField">이메일:</label>
+      <input type="email" id="emailField" required><br>
+
+      <label for="ageField">나이:</label>
+      <input type="number" id="ageField" required><br>
+
+      <label>성별:</label>
+      <label for="maleRadio">남성</label>
+      <input type="radio" id="maleRadio" name="gender" value="male">
+      <label for="femaleRadio">여성</label>
+      <input type="radio" id="femaleRadio" name="gender" value="female"><br>
+
+      <label for="countrySelect">거주 국가:</label>
+      <select id="countrySelect" required>
+        <option value="">선택하세요</option>
+        <option value="korea">대한민국</option>
+        <option value="usa">미국</option>
+        <option value="japan">일본</option>
+        <option value="china">중국</option>
+      </select><br>
+    </fieldset>
+
+    <fieldset>
+      <legend>홈페이지 개선사항</legend>
+      <label for="feedbackField">개선사항:</label><br>
+      <textarea id="feedbackField" rows="4" cols="50" placeholder="개선사항을 입력하세요"></textarea><br>
+
+      <label>홈페이지 접근성 평가:</label><br>
+      <input type="checkbox" id="accessibilityCheck1" value="easy">
+      <label for="accessibilityCheck1">접근하기 쉬움</label><br>
+      <input type="checkbox" id="accessibilityCheck2" value="clear">
+      <label for="accessibilityCheck2">이해하기 쉬움</label><br>
+      <input type="checkbox" id="accessibilityCheck3" value="fast">
+      <label for="accessibilityCheck3">빠른 로딩 속도</label><br>
+    </fieldset>
+    <button type="button" onclick="submitForm()">제출</button>
+  </form>
+	</section>
+	</footer>
+</div>   
+<div id="timer"></div>
+<button id="countdownBtn">카운트다운 시작</button>
+<div id="countdown"></div>
+</body>
+  <script>
+
+    // 태어난 날짜를 지정합니다.
+    var birthDate = new Date(1999, 8, 28); // 월은 0부터 시작하므로 8은 9월을 의미합니다.
+
+    // 현재 시간을 가져오는 함수를 정의합니다.
+    function getCurrentTime() {
+      var currentDate = new Date();
+      var currentHours = currentDate.getHours();
+      var currentMinutes = currentDate.getMinutes();
+      var currentSeconds = currentDate.getSeconds();
+      return currentHours + "시간 " + currentMinutes + "분 " + currentSeconds + "초";
+    }
+
+    // 경과한 시간을 계산하는 함수를 정의합니다.
+    function getElapsedTime() {
+      var currentDate = new Date();
+      var elapsedTime = currentDate - birthDate;
+
+      var elapsedDays = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+      var elapsedHours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+      var elapsedMinutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+      var elapsedSeconds = Math.floor((elapsedTime / 1000) % 60);
+
+      return elapsedDays + "일 " + elapsedHours + "시간 " + elapsedMinutes + "분 " + elapsedSeconds + "초";
+    }
+
+    // 화면 우측 상단에 태어난 날로부터 경과한 시간과 현재 시간을 출력하는 함수를 정의합니다.
+    function updateTimer() {
+      var timerElement = document.getElementById("timer");
+      var elapsedTime = getElapsedTime();
+      var currentTime = getCurrentTime();
+      timerElement.innerHTML = "태어난 날로부터 경과한 시간: " + elapsedTime + "<br>현재 시간: " + currentTime;
+    }
+
+    // 페이지 로드 시 타이머를 업데이트합니다.
+    updateTimer();
+
+    // 1초마다 타이머를 업데이트합니다.
+    setInterval(updateTimer, 1000);
+
+    // 10초부터 1초까지의 카운트다운을 수행하는 함수를 정의합니다.
+    function countdown() {
+      var countdownElement = document.getElementById("countdown");
+      countdownElement.innerHTML = ""; // 이전 카운트다운 내용을 초기화합니다.
+
+      for (var i = 10; i >= 1; i--) {
+        setTimeout(function (num) {
+          countdownElement.innerHTML = num;
+        }, (10 - i) * 1000, i);
+      }
+
+      // 10초 후에 "카운트다운 종료" 메시지를 표시합니다.
+      setTimeout(function () {
+        countdownElement.innerHTML = "카운트다운 종료";
+        // 타이머 종료 시 우측 상단의 시간 표시를 제거합니다.
+        document.getElementById("timer").style.display = "none";
+      }, 10000);
+    }
+
+    // 페이지 로드 시 카운트다운을 시작합니다.
+    countdown();
+
+    function deleteImage() {
+      var imageElement = document.getElementById("myImage");
+      if (imageElement) {
+        imageElement.remove();
+      }
+    }
+
+
+        var canvas = document.createElement("canvas");
+    var image = document.getElementById("myImage");
+    var ctx = canvas.getContext("2d");
+
+    function drawCircle() {
+      var rect = image.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      canvas.style.top = rect.top + "px";
+      canvas.style.left = rect.left + "px";
+
+      document.body.appendChild(canvas);
+
+      var radius = Math.min(rect.width, rect.height) / 2;
+      var centerX = rect.width / 2;
+      var centerY = rect.height / 2;
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+      ctx.fill();
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+  </script>
+
+</html>
